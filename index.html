@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>doodly &middot; generative doodle faces</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Patrick Hand", "Segoe Print", "Comic Sans MS", cursive;
+    background: #efe9db;
+    color: #33302b;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    overflow: hidden;
+  }
+
+  .page { max-width: 780px; width: 100%; text-align: center; }
+
+  .kicker {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  h1 {
+    font-family: "Gochi Hand", "Segoe Print", cursive;
+    font-size: clamp(52px, 8.5vw, 84px);
+    line-height: 1;
+    margin-top: 2px;
+    transform: rotate(-2deg);
+  }
+
+  .squiggle { display: block; margin: 0 auto 10px; }
+
+  .lede {
+    font-size: clamp(16px, 2.1vw, 20px);
+    line-height: 1.4;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .lede em { font-style: normal; border-bottom: 2px dashed rgba(51, 48, 43, 0.5); }
+
+  .strip {
+    margin: 14px auto 4px;
+    padding: 6px;
+    background: #faf8f2;
+    border: 2px solid rgba(51, 48, 43, 0.25);
+    border-radius: 10px;
+    box-shadow: 3px 4px 0 rgba(51, 48, 43, 0.15);
+    transform: rotate(-0.6deg);
+    overflow: hidden;
+  }
+  .strip canvas { display: block; margin: 0 auto; }
+  .strip-note { font-size: 13px; opacity: 0.55; }
+
+  .features {
+    list-style: none;
+    margin: 16px auto 0;
+    max-width: 640px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 6px 22px;
+    text-align: left;
+  }
+  .features li {
+    font-size: 16px;
+    line-height: 1.35;
+    padding: 4px 10px;
+    border-left: 3px dashed rgba(51, 48, 43, 0.45);
+  }
+  .features li:nth-child(odd) { transform: rotate(-0.4deg); }
+  .features li:nth-child(even) { transform: rotate(0.4deg); }
+  .features b { font-weight: normal; border-bottom: 2px solid rgba(51, 48, 43, 0.35); }
+
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 19px;
+    text-decoration: none;
+    padding: 9px 24px;
+    border-radius: 999px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn.big {
+    background: #33302b;
+    color: #f5f1e6;
+    box-shadow: 3px 4px 0 rgba(51, 48, 43, 0.35);
+    transform: rotate(-1deg);
+  }
+  .btn.ghost {
+    color: #33302b;
+    border: 2px dashed rgba(51, 48, 43, 0.55);
+    transform: rotate(1deg);
+  }
+  .btn:hover { transform: rotate(0deg) scale(1.06); }
+  .btn.big:hover { box-shadow: 4px 6px 0 rgba(51, 48, 43, 0.35); }
+
+  footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    font-size: 13px;
+    opacity: 0.5;
+    text-align: center;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<main class="page">
+  <p class="kicker">a tiny generative art toy</p>
+  <h1>doodly</h1>
+  <svg class="squiggle" width="200" height="12" viewBox="0 0 220 14" aria-hidden="true">
+    <path d="M4 8 Q 18 2, 32 8 T 60 8 T 88 8 T 116 8 T 144 8 T 172 8 T 200 8 T 216 7"
+          fill="none" stroke="#33302b" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+
+  <p class="lede">
+    Every face here is <em>grown from a single number</em>. Pick a seed and the
+    math wobbles some ink across sketchbook paper: heads, hair, hats, moods.
+    No two pages alike, every page repeatable.
+  </p>
+
+  <div class="strip"><canvas id="strip"></canvas></div>
+  <p class="strip-note">↑ real faces, sketched live in your browser just now</p>
+
+  <ul class="features">
+    <li><b>seeded & shareable</b>: the URL carries the seed; send a friend your exact page.</li>
+    <li><b>heads that turn</b>: open any doodle and drag to spin it around a real 3D skull.</li>
+    <li><b>they watch you</b>: enlarge a face and its pupils follow your mouse.</li>
+    <li><b>yours to keep</b>: export the sheet as PNG, or any face as crisp vector SVG.</li>
+  </ul>
+
+  <div class="cta-row">
+    <a class="btn big" href="app.html">start doodling &rarr;</a>
+    <a class="btn ghost" href="https://github.com/mryan-3/doodly" target="_blank" rel="noopener">&#9733; github</a>
+  </div>
+</main>
+
+<footer>made with ink & math &middot; no servers, no trackers &middot; everything runs right here in your browser</footer>
+
+<script src="js/random.js"></script>
+<script src="js/sketchy.js"></script>
+<script src="js/head3d.js"></script>
+<script src="js/parts.js"></script>
+<script src="js/face.js"></script>
+<script>
+// Sketch a fresh row of faces with the real engine.
+(function () {
+  const Rng = window.DoodlyRandom.Rng;
+  const hashSeed = window.DoodlyRandom.hashSeed;
+  const Face = window.DoodlyFace;
+  const cv = document.getElementById('strip');
+  const dpr = window.devicePixelRatio || 1;
+  const w = Math.max(280, Math.min(cv.parentElement.clientWidth - 16, 680));
+  const h = 130;
+  cv.width = Math.floor(w * dpr);
+  cv.height = Math.floor(h * dpr);
+  cv.style.width = w + 'px';
+  cv.style.height = h + 'px';
+  const ctx = cv.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const master = (Math.random() * 0xffffffff) >>> 0;
+  const n = Math.max(3, Math.round(w / 140));
+  const cw = w / n;
+  const scale = Math.min(cw / (Face.BOX_W + 10), h / (Face.BOX_H + 10));
+  for (let i = 0; i < n; i++) {
+    const seed = hashSeed(master, i);
+    const recipe = Face.makeRecipe(new Rng(seed), seed);
+    const bw = Face.BOX_W * scale, bh = Face.BOX_H * scale;
+    Face.drawFace(ctx, recipe, seed, {
+      x: i * cw + (cw - bw) / 2,
+      y: (h - bh) / 2,
+      scale: scale
+    });
+  }
+})();
+</script>
+</body>
+</html>

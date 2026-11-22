@@ -1,0 +1,108 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", "Chalkboard SE", cursive;
+  background: #d8d2c4;
+  color: #33302b;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 10px 18px;
+  background: #efe9db;
+  border-bottom: 2px solid rgba(51, 48, 43, 0.15);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+}
+
+.bar h1 { font-size: 26px; letter-spacing: 1px; }
+.bar .tag { font-size: 12px; opacity: 0.65; margin-right: auto; }
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.controls label { display: flex; align-items: center; gap: 5px; }
+
+.pager { display: flex; align-items: center; gap: 8px; }
+
+#page-label {
+  min-width: 68px;
+  text-align: center;
+  padding: 4px 10px;
+  font-size: 13px;
+  background: #faf8f2;
+  border: 1.5px dashed rgba(51, 48, 43, 0.55);
+  border-radius: 6px;
+  user-select: none;
+}
+
+input, select, button {
+  font: inherit;
+  padding: 4px 8px;
+  border: 1.5px solid #33302b;
+  border-radius: 6px;
+  background: #faf8f2;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: #33302b;
+  color: #f5f1e6;
+  border: none;
+}
+button:hover { background: #4a463f; }
+button:disabled { opacity: 0.35; cursor: default; }
+button:disabled:hover { background: #33302b; }
+
+#stage { flex: 1; position: relative; overflow: hidden; }
+#sheet { display: block; cursor: pointer; }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: zoom-out;
+}
+.modal.hidden { display: none; }
+
+.modal-inner { text-align: center; }
+
+#modal-canvas {
+  max-width: 88vw;
+  max-height: 78vh;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  background: #f1ebdd;
+  cursor: grab;
+}
+#modal-canvas.rotating { cursor: grabbing; }
+
+#modal-caption { color: #f5f1e6; margin-top: 10px; font-size: 14px; }
+
+#modal-svg-btn { margin-top: 10px; }
+
+.about-link {
+  color: inherit;
+  font-size: 13px;
+  text-decoration: none;
+  border-bottom: 1.5px dashed rgba(51, 48, 43, 0.55);
+  padding-bottom: 1px;
+}
+.about-link:hover { opacity: 0.7; }

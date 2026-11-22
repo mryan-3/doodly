@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>doodly &middot; generative doodle faces</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="bar">
+  <h1>doodly</h1>
+  <p class="tag">procedurally generated doodle faces</p>
+  <div class="controls">
+    <div class="pager">
+      <button id="prev-btn" title="Previous page (&larr;)">&larr; prev</button>
+      <span id="page-label">page 1</span>
+      <button id="next-btn" title="Next page (&rarr;)">next &rarr;</button>
+    </div>
+    <label>per page
+      <select id="count-select">
+        <option value="24">24</option>
+        <option value="48" selected>48</option>
+        <option value="96">96</option>
+      </select>
+    </label>
+    <label>ink
+      <select id="ink-select">
+        <option value="graphite" selected>graphite</option>
+        <option value="blue">ballpoint</option>
+        <option value="sepia">sepia</option>
+      </select>
+    </label>
+    <label>paper
+      <select id="paper-select">
+        <option value="cream" selected>cream</option>
+        <option value="white">white</option>
+        <option value="gray">gray</option>
+      </select>
+    </label>
+    <button id="regen-btn" title="Regenerate (R)">&#8635; redraw</button>
+    <button id="download-btn" title="Download as PNG">&darr; png</button>
+    <a class="about-link" href="index.html" title="What is this?">about</a>
+  </div>
+</header>
+
+<main id="stage"><canvas id="sheet"></canvas></main>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-inner">
+    <canvas id="modal-canvas" width="500" height="600"></canvas>
+    <p id="modal-caption"></p>
+    <button id="modal-svg-btn" title="Download this face as SVG">&darr; svg</button>
+  </div>
+</div>
+
+<script src="js/random.js"></script>
+<script src="js/sketchy.js"></script>
+<script src="js/head3d.js"></script>
+<script src="js/parts.js"></script>
+<script src="js/face.js"></script>
+<script src="js/svg.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
